@@ -15,20 +15,20 @@ class Passy extends ReactiveController {
 	@state() p = '';
 }
 const passy = new Passy();
-await passy.updateComplete
-
-let p;
-if (passy.p !== '22445') {
-	p = prompt('an error has occured');
-	if (p === '22445') {
-		passy.p = p;
+passy.updateComplete.then(() => {
+	let p;
+	if (passy.p !== '22445') {
+		p = prompt('an error has occured');
+		if (p === '22445') {
+			passy.p = p;
+		}
 	}
-}
 
-if (passy.p === '22445') {
-	document.body.prepend(app);
+	if (passy.p === '22445') {
+		document.body.prepend(app);
 
-	app.updateComplete.then(() => {
-		ThemeManager.init();
-	});
-}
+		app.updateComplete.then(() => {
+			ThemeManager.init();
+		});
+	}
+});
